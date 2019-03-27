@@ -21,7 +21,7 @@ const app = express();
 app.use(bodyParse.json());
 app.use(bodyParse.urlencoded({extended:true}));
 app.use(cors());
-
+console.log(process.env.DATABASE_URL)
 app.get('/', (req, res) => {res.send('working');});
 app.post('/signin',(req,res)=>
 {signin.handleSignin(req,res,knex,bcrypt)});
