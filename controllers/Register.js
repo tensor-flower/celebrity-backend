@@ -2,6 +2,7 @@ const handleRegister = (req,res,knex,bcrypt)=>{
     const {name,email,password} = req.body;
     const saltRounds = 10;
     const hash = bcrypt.hashSync(password,saltRounds);
+    console.log(process.env.DATABASE_URL)
     knex.transaction(trx=>{
         return trx.insert({email:email,hash:hash},'email').into('login')
         .transacting(trx)
