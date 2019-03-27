@@ -24,7 +24,7 @@ app.use(bodyParse.json());
 app.use(bodyParse.urlencoded({extended:true}));
 app.use(cors());
 
-app.get('/', (req, res) => {res.send(knex.users);});
+app.get('/', (req, res) => {res.send('working');});
 app.post('/signin',(req,res)=>
 {signin.handleSignin(req,res,knex,bcrypt)});
 app.post('/register', (req,res)=>
@@ -35,6 +35,6 @@ app.get('/profile/:id', (req,res)=>{profile.handleProfile(req,res,knex)});
 app.put('/image',(req,res)=>{image.handleImage(req,res,knex)})
 app.post('/api',(req,res)=>{image.handleAPI(req,res)})
 
-app.listen(port,()=>{
-    console.log('server running on port',port)
+app.listen(process.env.PORT||port,()=>{
+    console.log('server running on port',process.env.PORT)
 });
